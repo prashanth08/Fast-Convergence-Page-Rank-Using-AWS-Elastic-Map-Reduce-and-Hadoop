@@ -1,0 +1,15 @@
+================================
+CHANGES FROM PREVIOUS SUBMISSION
+================================
+
+1. Bug fix for page rank updation in Block Pagerank implementation.
+We identified a bug in the updation of page rank in Block-Pagerank implementation. 
+Fix: A new hash map is used to track the newly calculated page rank of each node in the block. After the iteration completes, the page_rank of every node is updated with the new page_rank stored in the map. This was introduced in the reduce function of BlockPageRankReducer class, pageRankOnBlock() method
+
+2. The convergence criterion was changed to absolute convergence (average residual <  0.001) in the Pagerank computation with in the block. The implementation was modified to run until the convergence criterion is met rather than limiting to a specified number of iteration of pagerank computation within the block.
+This was introduced in the reduce function of BlockPageRankReducer class, reduce() method.
+
+3. Gauss-Siedel implementation was added to the project.
+This was introduced in the reduce function of BlockPageRankReducer class.
+
+4. Code to calculate Average iteration per map-reduce job was introduced in the reduce function of BlockPageRankReducer class which is used by both Random-Block implementation and Block(Jacobian) Pagerank implementation.
